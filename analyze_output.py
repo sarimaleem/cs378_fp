@@ -25,7 +25,7 @@ print()
 y_true = []
 y_predict = []
 
-# print out wrong lines 
+# print out wrong lines for specific analysis
 for (i, line) in enumerate(f):
     example = json.loads(line)
     label = example["label"]
@@ -43,12 +43,13 @@ for (i, line) in enumerate(f):
 
 print(mispredict, "/", i, "mispreditions")
 
+# Confusion Matrix
 cm = confusion_matrix(y_true=y_true, y_pred=y_predict)
 print(cm)
 
+# Confusion Matrix that prints out percentages
 np.set_printoptions(precision=2)
 percent = cm / cm.astype(np.float32).sum(axis=1) * 100
 table = tabulate(percent)
 print(table)
-# print(np.array_str(percent, precision=2, suppress_small=True))
 
