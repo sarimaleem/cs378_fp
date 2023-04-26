@@ -94,22 +94,85 @@ steps/s    & 60.751  \\ \hline
 \caption*{\textit{ 0=Entailment, 1=Neutral, 2=Contradiction }}
 \end{table}
 
+\subsection{Confusion Matrix Analysis}
 In general, the model seems to do well with Separating Entailment and
 Contradiction. For example, it only incorrectly identifies 2.47\% of entailment
 examples as contradiction and 2.37\% of contradiction examples as entailement.
+
 However, the model struggles more to understand the relationship between,
-entailment and neutral, as well as contradiction and neutral.
+entailment and neutral, as well as contradiction and neutral. For example, it
+mispredicted over 7\% of entailments and contradictions as neutrals. As long as 
+mispredicting over 6\% of neutrals as entailments and over 7\% of of neutrals as
+contradictions.
+
+\subsection{Manual Pattern Analysis}
+
+It's difficult to say how the model is evaluating sentences, since it's
+impossible to fully understand its weights. Nevertheless, there do seem to be
+some patterns one evaluating mistakes that the model makes. One pattern that
+seems to happen is that the model seems to be unable to understand different
+words that mean the same thing in a context. For example, the following is an
+error that the model made. 
+
+In the example with hypothesis \textit{A man and a woman are looking at produce
+on display} and premise \textit{A man and woman are staring at heads of
+lettuce}. The model is unable to distinguish that lettuce is a type of produce
+and instead makes assumption that they are different, thus leading it to think
+they are contradictions.
+
+\begin{table*}[t]
+\caption{Examples of model misunderstanding words, or not considering their importance}
+\begin{tabular}{|p{4cm}|p{4cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{premise}                                                                        & \textbf{Hypothesis}                & \textbf{Gold} & \textbf{Predicted} \\ \hline
+People are throwing tomatoes at each other                                                                    & The people are having a food fight               & entailment                         & contradiction      \\ \hline
+A man and a woman are looking at produce on display.                                                          & A man and women are staring at heads of lettuce. & neutral                            & contradiction      \\ \hline
+Two men sitting on a subway are reading, with coats and scarves on, but have seemed to have lost their pants. & The men are wearing pants.                       & contradiction                      & entailment         \\ \hline
+Two men are in an electronics workshop, working on computers or equipment                                     & The men are unaware of what computers are.       & contradiction                      & neutral            \\ \hline
+\end{tabular}
+\end{table*}
+
+
+\subsection{Using Contast sets to evaluate the Model}
+subsection{Contrast Sets}
+
+In their article \textit{Evaluating models' local decision boundaries via
+contrast sets} \cite{gardner2020evaluating}, Gardner et al. explain the concept
+of a \textit{contrast set}. A contrast set is a small but meaninful alteration
+in the input data that typically leads to a different gold label.
+
+In order to test if the model is finding artifacts in the data or genuinely
+evaluating it, we annotated 50 different examples in the validation data that
+the model predicted correctly, and then tested to see if the model was able to
+predict them correctly again.
+
+
+
+
+
+\subsection{Using contast sets to evaluate the model}
 
 \todo{Describe clearly how you conducted your analysis of the model
 performance, and report the outcomes. You should provide (1) some examples of
 both \textbf{specific errors/behavior} from the model and (2) analysis or
 discussion of \textbf{the general class of mistakes the model makes}. For
-characterizing the general class, try to come up with rules that can identify a
-set of challenging examples (e.g., ``examples containing \emph{not}'') and try
-to visualize in charts, graphs, or tables what you believe to be relevant
+characterizing the general class, try to come up with rules that can identify
+a set of challenging examples (e.g., ``examples containing \emph{not}'') and
+try to visualize in charts, graphs, or tables what you believe to be relevant
 statistics about the data. For example, how frequent is the class of examples
 where such error pattern apply? This part of the report should be at least one
 page.}
+
+% Describe clearly how you conducted your analysis of the model
+% performance, and report the outcomes. You should provide (1) some examples of
+% both \textbf{specific errors/behavior} from the model and (2) analysis or
+% discussion of \textbf{the general class of mistakes the model makes}. For
+% characterizing the general class, try to come up with rules that can identify a
+% set of challenging examples (e.g., ``examples containing \emph{not}'') and try
+% to visualize in charts, graphs, or tables what you believe to be relevant
+% statistics about the data. For example, how frequent is the class of examples
+% where such error pattern apply? This part of the report should be at least one
+% page.
 
 \section{Describing Your Fix (20pt)}
 
@@ -124,6 +187,17 @@ define all notations. Someone who is reading your report (with reasonable
 background, e.g., your classmates in this course) should have a reasonable idea
 how to implement it themselves. Describe hyperparameters, including how they
 are selected, if you have hyperparameters involved. }
+
+% You should describe modifications you have made to improve performances.
+% We will evaluate based on how reasonable is your fix  -- if your fix and
+% motivation does not link, your modificiation is unreasonable. For example,
+% perhaps you tried to modify neural network training in a way that is totally
+% unconnected to your stated goal, or your modification was erroneous. Describe
+% the baseline model to be compared to your approach as well here. Again, clearly
+% define all notations. Someone who is reading your report (with reasonable
+% background, e.g., your classmates in this course) should have a reasonable idea
+% how to implement it themselves. Describe hyperparameters, including how they
+% are selected, if you have hyperparameters involved. 
 
 \section{Evaluating Your Fix (25pt)}
 

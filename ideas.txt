@@ -1,0 +1,11 @@
+1. Unable to undersand different words for the same idea
+line 29
+line 88
+line 170
+line 175
+
+2. Some seem to be errors in the training data
+line 153
+line 195
+
+3. also vagueness in labels quite frankly
