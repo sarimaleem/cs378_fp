@@ -2,10 +2,12 @@
 
 \bibitem{clark2020electra}
 Kevin Clark, Minh-Thang Luong, Quoc~V. Le, and Christopher~D. Manning.
-\newblock Electra: Pre-training text encoders as discriminators rather than generators, 2020.
+\newblock Electra: Pre-training text encoders as discriminators rather than
+  generators, 2020.
 
 \bibitem{gardner2020evaluating}
-Matt Gardner, Yoav Artzi, Victoria Basmova, Jonathan Berant, Ben Bogin, Sihao Chen, Pradeep Dasigi, Dheeru Dua, Yanai Elazar, Ananth Gottumukkala, et~al.
+Matt Gardner, Yoav Artzi, Victoria Basmova, Jonathan Berant, Ben Bogin, Sihao
+  Chen, Pradeep Dasigi, Dheeru Dua, Yanai Elazar, Ananth Gottumukkala, et~al.
 \newblock Evaluating models' local decision boundaries via contrast sets.
 \newblock {\em arXiv preprint arXiv:2004.02709}, 2020.
 

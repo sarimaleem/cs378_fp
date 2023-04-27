@@ -5,11 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "debug run",
             "type": "python",
             "request": "launch",
-            "program": "run.py",
+            "program": "${cwd}/run.py",
             "args": ["--do_eval", "--task", "nli", "--dataset", "snli", "--model", "./trained_model/", "--output_dir", "./eval_output/"],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "debug cartography",
+            "type": "python",
+            "request": "launch",
+            "program": "${cwd}/data_cartography.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }
