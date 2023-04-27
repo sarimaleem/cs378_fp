@@ -1,8 +1,8 @@
 import json
 
-f = open("ambiguous_labels.txt")
+f = open("difficult_labels.txt")
 m = open("model500/eval_predictions.jsonl")
-t = open("amiguous_examples.jsonl", "a")
+t = open("difficult_examples.jsonl", "a")
 labels = []
 
 for label in f:

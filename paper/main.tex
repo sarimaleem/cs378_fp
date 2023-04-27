@@ -9,6 +9,7 @@
 \usepackage[small]{titlesec}
 \usepackage{cite}
 \usepackage{graphicx}
+\usepackage[autostyle]{csquotes}
 
 \renewcommand\tabularxcolumn[1]{C{#1}}
 
@@ -17,27 +18,56 @@
 \title{CS378: Final Project - Data Artifacts \\ \url{https://github.com/sarimaleem/cs378_fp}}
 \author{Sarim Aleem \\ ska2222}
 
-\date{}
+\date{April 27, 2023}
 
 \begin{document}
 \maketitle
 
 
 \begin{abstract}
-    \todo{write an abstract describing the core motivation and findings from your project}
+
+This paper describes the training and testing of an ELECTRA model for natural
+language inference using the Stanford Natural Language Inference Dataset. The
+model's performance is benchmarked using contrast sets, and data cartography is
+used to improve the model's accuracy. The results show that the base ELECTRA
+model performs well on the dataset, and extracting ambiguous examples from data
+cartography and training the model on them is an effective method for improving
+its performance for some aspects. 
+
 \end{abstract}
 
 \section{Introduction (5pt)}
 
-\todo{This section should include three paragraphs. The first paragraph is to
-briefly describe task and data. The second paragraph should describe the
-results of your analysis, and the third paragraph describing your fix and main
-experimental take aways. }
+Natural language inference is the task of determining the truth value of a
+hypothesis given a premise. A hypothesis can either be true if it entails from
+the premise, false if it contradicts the premise, or neutral if a determination
+cannot be made either way. In this paper, train a model based on the Stanford
+Natural Language Inference Dataset (SNLI).
 
-The model that was used was \cite{clark2020electra}
+We find that the SNLI model has difficulty differenting between neutral labels,
+and labels of other classes. We also find that the model often is unable to
+contextualize and relate the semantics of different words that have the same
+meaning. We created a contrast set in order to test the model, and found that
+the performance of the model is significantly degraded in comparison to the
+validation set.
 
+In order to reduce ambiguity between words, we decided to train the model on
+ambiguous data - data with high variability and medium confidence. We found that
+training that although training the model on ambiguous data reduced the models
+overall performance, the performance of the model increased on adversarial data,
+which we dubbed contrast sets.
 
 \section{Task/Dataset/Model Description (15pt)}
+
+The model that was used was the ELECTRA model \cite{clark2020electra}. We are
+training  on the stanford NLI dataset \cite{bowman2015large}. The dataset has
+570000 training examples and 10000 validation examples. The baseline ELECTRA
+modeled was fine tuned to the SNLI training set and was trained with three
+epochs. We used the default loss function from the hugging face transformers
+library. 
+
+For the fix, we took ambiguous data from the first 50000 training examples and
+trained on those for 15 epochs.
 
 \todo{Describe the task/dataset/model you are working on. Clearly define your
 task with mathematical notations. Describe your learning algorithm. You must
@@ -173,7 +203,13 @@ contradiction.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{./ambiguous.jpg}
-  \caption{Data Cartogram of 2000 training examples}
+  \caption{Data Cartogram of 2000 training examples, orange ambiguous}
+  \label{}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{./difficult.jpg}
+  \caption{Data Cartogram of 2000 training examples, orange difficult}
   \label{}
 \end{figure}
 
@@ -193,63 +229,108 @@ In order to deal with this, we first created a program that finds ambiguous
 examples. We found the variance of the training example based on its confidence
 of the gold label from a modeled trained on 500 iterations, 1000 iterations,
 1500 iterations, 2000 iterations, 2500 iterations, and 3000 iterations. If th
-variance was greater than 0.2, and the confidence of the model was in between
-0.6 and 0.7, the example was deemed ambiguous. According to \textit{Swayamdipta
+variance was greater than 0.15, and the confidence of the model was in between
+0.4 and 0.8, the example was deemed ambiguous. According to \textit{Swayamdipta
 et al.}, training solely ambiguous examples leads to to greater performance
 than training on the whole dataset, only easy to learn examples, or only hard to
 learn examples. Thus it is logical to train on these examples. 
 
-We pulled 1655 ambiguous samples from the training data and trained on those examples.
+We pulled 1655 ambiguous samples from the training data and trained on those
+examples. We trained for 15 epochs on ambiguous examples. As a test, we also
+trained solely on difficult to learn examples for five epochs, of which there
+were 6915, and benchmarked their performance.
 
 \section{Evaluating Your Fix (25pt)}
 
+We evaluated the new model that was trained on hard to learn examples and
+independently trained on ambiguous examples. We found that models trained on
+ambiguous examples tended to do better with more difficult data, but tended to
+reduce the models overall average. For example, the accuracy of the model
+trained on ambiguous data and tested on the contrast set was 80\%, whereas the
+model that was not trained on ambiguous data had an accuracy of 77\%.
 
-\todo{
-Your writeup should address how effective is your fix, how broadly applicable
-is your fix, etc. Providing a single number (overall accuracy) is necessary but
-not sufficient here. For example, if your change made the model better on
-challenging NLI examples, you could try to quantify that on one or more slices
-of the data, give examples of predictions that are fixed, or even use model
-interpretation techniques to try to support claims about how your improved
-model is doing its ``reasoning.'' (You can look at the papers listed above to
-get a sense of how to do such fine-grained evaluation).  You should report
-results from a baseline approach (your initial trained model) as well as your
-``best'' method. If doing your own project, baselines such as majority class,
-random, or a linear classifier are important to see. \textbf{Ablations}: If you
-tried several things, analyze the contribution from each one. These should be
-\emph{minimal} changes to the same system; try running things with just one
-aspect different in order to assess how important that aspect is. This part of
-the report should be at least one page.}
+Based on manual evaluation of the contrast set, there is some evidence that the
+model is able to reason better about differentiaing between entailment and
+contradictions (given that they have no errors) and in some instances better
+predicts neutrals. The following is a good example of this phenomenon:
 
 
-% \todo{Describe the data you use, including how many examples are in the training, development, and test sets. Please also provide shallow statistics of your data, with at least the vocabulary size and instruction length. It is best to report all the statistics, including counts, in a table. Please describe how you compute statistics that can be computed in different ways (i.e., vocabulary size). Describe how you pre-process the data, including how you treat casing, tokenization, unknown words, and anything else that you did to the raw data before providing it to your model. If you are using a subset of the data, explain why and discuss tradeoffs (you will also need to back them with experiments).}
+\begin{quote}
+premise: Under a blue sky with white clouds, a child reaches up to touch the propeller of a plane standing parked on a field of grass. \\
+hypothesis: A child is not reaching to touch the propeller out of curiousity.  \\
+label: neutral \\
+predicted: neutral
+\end{quote}
 
-% \section{Implementation Details (3pt)}
+Unlike the the baseline model, which does not see the relationship that
+\textit{not} has in the sentence (negating curiousity, not touching), the model
+that is trained on ambiguous data is able to distinguish examples like these.
 
-% \todo{Briefly describe the implementation details. No need to copy details already specified in the assignment. Include any hyper-parameters the model has. If there are any optimizations that you introduced, this is the place to describe them. Did you have to do any special optimizations to make the method work in reasonable time/memory? Describe it here.}
+% Please add the following required packages to your document preamble:
+% \usepackagemultirow
+\begin{table}[]
+    \caption{Ambiguous Trained Model on Contrast Set}
+    \begin{tabular}{|ll|rrr|}
+        \hline
+        \multicolumn{2}{|l|}{\multirow{2}{*}{}}                           & \multicolumn{3}{l|}{\textbf{Predicted}}                                                              \\ \cline{3-5} 
+        \multicolumn{2}{|l|}{}                                            & \multicolumn{1}{l|}{\textit{0}} & \multicolumn{1}{l|}{\textit{1}}  & \multicolumn{1}{l|}{\textit{2}} \\ \hline
+        \multicolumn{1}{|l|}{\multirow{3}{*}{\textbf{True}}} & \textit{0} & \multicolumn{1}{r|}{90}         & \multicolumn{1}{r|}{7.692307692} & 0                               \\ \cline{2-5} 
+        \multicolumn{1}{|l|}{}                               & \textit{1} & \multicolumn{1}{r|}{10}         & \multicolumn{1}{r|}{61.53846154} & 30.76923077                     \\ \cline{2-5} 
+        \multicolumn{1}{|l|}{}                               & \textit{2} & \multicolumn{1}{r|}{0}          & \multicolumn{1}{r|}{7.692307692} & 92.30769231                     \\ \hline
+    \end{tabular}
+    \caption*{\textit{ 0=Entailment, 1=Neutral, 2=Contradiction }}
+\end{table}
 
-% \section{}
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[]
+    \caption{Ambiguous Trained Model on Validation Set}
+    \begin{tabular}{|ll|rrr|}
+        \hline
+        \multicolumn{2}{|l|}{\multirow{2}{*}{}}                           & \multicolumn{3}{l|}{\textbf{Predicted}}                                                             \\ \cline{3-5} 
+        \multicolumn{2}{|l|}{}                                            & \multicolumn{1}{l|}{\textit{0}} & \multicolumn{1}{l|}{\textit{1}} & \multicolumn{1}{l|}{\textit{2}} \\ \hline
+        \multicolumn{1}{|l|}{\multirow{3}{*}{\textbf{True}}} & \textit{0} & \multicolumn{1}{r|}{83.53}      & \multicolumn{1}{r|}{9.79}       & 7.04                            \\ \cline{2-5} 
+        \multicolumn{1}{|l|}{}                               & \textit{1} & \multicolumn{1}{r|}{6.39}       & \multicolumn{1}{r|}{79.75}      & 13.48                           \\ \cline{2-5} 
+        \multicolumn{1}{|l|}{}                               & \textit{2} & \multicolumn{1}{r|}{2.70}       & \multicolumn{1}{r|}{7.48}       & 89.871                          \\ \hline
+    \end{tabular}
+    \caption*{\textit{ 0=Entailment, 1=Neutral, 2=Contradiction }}
+\end{table}
+
+However, the model that was trained on ambiguous data seemed to suffer on the
+overall benchmark of the evaluation set. The accuracy dropped from 88\% to 84\%
+on the validation set.
+
+The most surprising results were the difficult to learn examples. The accuracy
+of that model was significantly lower than base model, clocking in an accuracy
+of 13\%. Even a model with random guessing could have done better. 
+
+Due to time constraints, more ambiguous labels could not be extracted, but it's
+certainly possible that if all 500000 training examples are indexed and
+ambiguous ones are found, that the model could have better performance than it
+currently does. Furthremore, it is clear that training only on diffult to learn
+examples degrades model performance significantly.
 
  \section{Related Work (5pt)}
-\todo{Briefly discuss prior research papers related to your approach. This will
-likely some papers in the project description document. How is your approach
-different from existing studies?}
-% \paragraph{Ablations (15pt)}
-
-% \todo{Please report your ablation studies on the development set. Make sure to ablate each feature set independently to show they contribute to your final result.  If a feature set does not improve performance, please do not include it -- it doesn't help. You can still discuss it, but there is really no point in including it in your final model. Reporting the results must be done in a table, and each result must be discussed in the text.}
-
-% \section{Error Analysis (7pt)}
-
-% \todo{Qualitative analysis of selected failure examples. Show and discuss error examples from your development set. You must identify certain classes of errors and use the examples to illustrate them. This is often best to show in a table.}
+Zhang et al. \cite{zhang2022cartography} propose another algorithm that uses
+data cartography called \enquote{cartography active learning}. However, their
+approach differs slightly in that they actively select ambiguous and difficult
+examples \textit{during} training and then adjust the input of the training in
+real time to train on the ambiguous data. In contrast, our approach finds
+ambiguous and difficult data after an initial training period and then trains on
+that data.
 
 \section{Conclusion (5pt)}
-\todo{Brief conclusion summarizing findings from both numerical results and
-qualitative analysis.}
 
-\section*{(Optional) AI Assistance}
-
-\todo{If you have used any AI toolkit (either for writing assistance or code
-assistance) for your final project, please describe it here. }
+In this paper, we evaluate an ELECTRA based ML model on the Stanford Natural
+Language Inference dataset. We find that the model has difficulty
+differentiating between neutral labels and other classes and that it finds at
+times spurious correlations between the premise and hypothesis. We also find
+that the model suffers significant performance degradation when tested against a
+contrast set. To remedy this, we recommend finding ambiguous labels (labels with
+high variablity and medium conference) using data cartography, and train the
+model on those data points in addition to the training set. Although not a
+perfect method, training on ambiguous labels can help the model learn more
+difficult correlations.
 
 \bibliography{sample}{}
 \bibliographystyle{plain}

@@ -36,14 +36,14 @@ mean = np.mean(confidence_array, axis=0)
 
 df = pd.DataFrame({"confidence": mean, "variance": variance})
 df["ambigious"] = (df["variance"] > 0.15) & (df["confidence"] > 0.4) & (df["confidence"] < 0.8)
-# df["ambigious"] = np.all([variance > 0.2, mean > 0.6, mean < 0.7])
-# print(df.head())
+df["difficult"] = (df["confidence"] < 0.5)
 
-# sns.scatterplot(df, x="variance", y="confidence", hue=df["ambigious"])
-# plt.savefig("paper/ambiguous.jpg")
+# sns.color_palette("flare", as_cmap=True)
+# sns.scatterplot(df, x="variance", y="confidence", hue=df["difficult"])
+# plt.savefig("paper/difficult.jpg")
 # plt.show()
 
-l = df.index[df["ambigious"]].tolist()
-f = open("ambiguous_labels.txt", "a")
+l = df.index[df["difficult"]].tolist()
+f = open("difficult_labels.txt", "a")
 for num in l:
     f.write(str(num) + "\n")

@@ -15,7 +15,7 @@
         - [x] Create script for contrast set
         - [x] Create a contrast set
         - [x] Run and analyze contrast set
-- [ ] Dataset cartography script
+- [x] Dataset cartography script
     - [x] Load the model
         - [x] load one model
         - [x] load multiple models model
@@ -26,12 +26,12 @@
         - [ ] Evaluate multiple models
     - [x] figure out how to compute standard deviation of gold label. 
     - [x] Plot data cartography
-    - [ ] Get ambigious training examples
-    - [ ] Train on the ambigious or hard training examples. 
-    - [ ] Evaluate on the ambigious or hard training examples. 
-        - [ ] Accuracy 
-        - [ ] Look at the results of training examples, replot the confusion matricies, hope to GOD the results are different
-    - [ ] Write up the results of the training/evaluation
+    - [x] Get ambigious training examples
+    - [x] Train on the ambigious or hard training examples. 
+    - [x] Evaluate on the ambigious or hard training examples. 
+        - [x] Accuracy 
+        - [x] Look at the results of training examples, replot the confusion matricies, hope to GOD the results are different
+    - [x] Write up the results of the training/evaluation
 - [ ] Paper 
     - [ ] Abstract
     - [ ] Introduction
@@ -39,7 +39,7 @@
     - [x] Performance Analysis
     - [x] Describing your fix
     - [ ] Evaluating your fix
-    - [ ] Related work
+    - [x] Related work
     - [ ] Conclusion
     - [ ] Citations
     - [ ] Proofread
@@ -54,9 +54,9 @@
 - [ ] Writeup on selected issue
 
 ## Arabic
-- [ ] Study??
-- [ ] Do the test (8-11AM)
+- [x] Study?? (the studying did happen)
+- [x] Do the test (8-11AM)
 
 ## Other
-- [ ] Sleep?
-- [ ] Eat?
+- [ ] Sleep? (no!)
+- [ ] Eat? (sort of)

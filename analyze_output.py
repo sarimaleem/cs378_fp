@@ -4,7 +4,7 @@ from prettytable import PrettyTable
 from tabulate import tabulate
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-f = open("./eval_output/eval_predictions.jsonl")
+f = open("./ambiguous_only_validation/eval_predictions.jsonl")
 
 
 # {"premise": "Two women are embracing while holding to go packages.", 
@@ -16,11 +16,11 @@ f = open("./eval_output/eval_predictions.jsonl")
 mispredict = 0
 i = -1
 
-print("reference")
-print("0:", "Entailment")
-print("1:", "Neutral")
-print("2:", "Contradiction")
-print()
+# print("reference")
+# print("0:", "Entailment")
+# print("1:", "Neutral")
+# print("2:", "Contradiction")
+# print()
 
 y_true = []
 y_predict = []
@@ -41,15 +41,20 @@ for (i, line) in enumerate(f):
         # print("predicted:", example["predicted_label"])
         # print()
 
-print(mispredict, "/", i, "mispreditions")
+# print(mispredict, "/", i, "mispredictions")
 
 # Confusion Matrix
 cm = confusion_matrix(y_true=y_true, y_pred=y_predict)
-print(cm)
+# print(cm)
 
 # Confusion Matrix that prints out percentages
 np.set_printoptions(precision=2)
 percent = cm / cm.astype(np.float32).sum(axis=1) * 100
 table = tabulate(percent)
-print(table)
+# print(table)
 
+# print("---------------------")
+for row in percent:
+    for col in row:
+        print(col, end='\t')
+    print()

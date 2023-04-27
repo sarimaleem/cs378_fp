@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{bowman2015large}
+Samuel~R Bowman, Gabor Angeli, Christopher Potts, and Christopher~D Manning.
+\newblock A large annotated corpus for learning natural language inference.
+\newblock {\em arXiv preprint arXiv:1508.05326}, 2015.
+
 \bibitem{clark2020electra}
 Kevin Clark, Minh-Thang Luong, Quoc~V. Le, and Christopher~D. Manning.
 \newblock Electra: Pre-training text encoders as discriminators rather than
@@ -16,5 +21,9 @@ Swabha Swayamdipta, Roy Schwartz, Nicholas Lourie, Yizhong Wang, Hannaneh
   Hajishirzi, Noah~A. Smith, and Yejin Choi.
 \newblock Dataset cartography: Mapping and diagnosing datasets with training
   dynamics, 2020.
+
+\bibitem{zhang2022cartography}
+Mike Zhang and Barbara Plank.
+\newblock Cartography active learning, 2022.
 
 \end{thebibliography}
