@@ -66,14 +66,11 @@ modeled was fine tuned to the SNLI training set and was trained with three
 epochs. We used the default loss function from the hugging face transformers
 library. 
 
-For the fix, we took ambiguous data from the first 50000 training examples and
-trained on those for 15 epochs.
+For the fix, we took 1655 ambiguous data examples from the first 50000 training
+examples and trained on those for 15 epochs on top of the original model. We
+also trained 6915 difficult to learn examples for 5 epochs on top of the
+baseline model and evaluate that.
 
-\todo{Describe the task/dataset/model you are working on. Clearly define your
-task with mathematical notations. Describe your learning algorithm. You must
-formally specify the loss function, stopping criteria, training data, etc used
-for the model you are analyzing in the next section. Remember, every notation
-you use must be defined.}
 
 \section{Performance Analysis (25pt)}
 
