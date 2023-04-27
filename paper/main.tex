@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage[small]{titlesec}
 \usepackage{cite}
+\usepackage{graphicx}
 
 \renewcommand\tabularxcolumn[1]{C{#1}}
 
@@ -164,17 +165,41 @@ have the same meaning (in this case vehicles and cars).
 
 \section{Describing Your Fix (20pt)}
 
+It is clear that the issue with the model is that it fails to understand
+ambiguous training examples. This is especially seen given that the model
+largely confuses, as seen earlier, neutral and entailment and instances of
+contradiction. 
 
-\todo{You should describe modifications you have made to improve performances.
-We will evaluate based on how reasonable is your fix  -- if your fix and
-motivation does not link, your modificiation is unreasonable. For example,
-perhaps you tried to modify neural network training in a way that is totally
-unconnected to your stated goal, or your modification was erroneous. Describe
-the baseline model to be compared to your approach as well here. Again, clearly
-define all notations. Someone who is reading your report (with reasonable
-background, e.g., your classmates in this course) should have a reasonable idea
-how to implement it themselves. Describe hyperparameters, including how they
-are selected, if you have hyperparameters involved. }
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{./ambiguous.jpg}
+  \caption{Data Cartogram of 2000 training examples}
+  \label{}
+\end{figure}
+
+\subsection{Dataset Cartography}
+
+Training on labels that are ambiguous, that have high variablity, should in
+theory help with this issue, even more so than hard to learn labels. An
+ambiguous label is defined as a label that has high variance when predicted by
+different iterations of the model. For example, a model that is trained on 500
+iterations would predict the input differently than a model trained with 1000
+iterations or a model trained with 1500 iterations. Furthermore, the average
+confidence of that training example is not high or low.
+\cite{swayamdipta2020dataset} We reproduced the code to analyze data, and have
+plotted 500 training examples in figure 1. 
+
+In order to deal with this, we first created a program that finds ambiguous
+examples. We found the variance of the training example based on its confidence
+of the gold label from a modeled trained on 500 iterations, 1000 iterations,
+1500 iterations, 2000 iterations, 2500 iterations, and 3000 iterations. If th
+variance was greater than 0.2, and the confidence of the model was in between
+0.6 and 0.7, the example was deemed ambiguous. According to \textit{Swayamdipta
+et al.}, training solely ambiguous examples leads to to greater performance
+than training on the whole dataset, only easy to learn examples, or only hard to
+learn examples. Thus it is logical to train on these examples. 
+
+We pulled 1655 ambiguous samples from the training data and trained on those examples.
 
 \section{Evaluating Your Fix (25pt)}
 

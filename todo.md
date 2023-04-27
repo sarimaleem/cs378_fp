@@ -16,26 +16,28 @@
         - [x] Create a contrast set
         - [x] Run and analyze contrast set
 - [ ] Dataset cartography script
-    - [ ] Load the model
-        - [ ] load one model
-        - [ ] load multiple models model
+    - [x] Load the model
+        - [x] load one model
+        - [x] load multiple models model
     - [x] Load the training data
         - [x] Cap the amount of training samples
-    - [ ] Evaluate model on training data
-        - [ ] Evaluate one model
+    - [x] Evaluate model on training data
+        - [x] Evaluate one model
         - [ ] Evaluate multiple models
-    - [ ] figure out how to compute standard deviation of gold label. 
-    - [ ] Plot data cartography
+    - [x] figure out how to compute standard deviation of gold label. 
+    - [x] Plot data cartography
     - [ ] Get ambigious training examples
     - [ ] Train on the ambigious or hard training examples. 
     - [ ] Evaluate on the ambigious or hard training examples. 
+        - [ ] Accuracy 
+        - [ ] Look at the results of training examples, replot the confusion matricies, hope to GOD the results are different
     - [ ] Write up the results of the training/evaluation
 - [ ] Paper 
     - [ ] Abstract
-    - [ ] Write Introduction
+    - [ ] Introduction
     - [ ] Task/Dataset
     - [x] Performance Analysis
-    - [ ] Describing your fix
+    - [x] Describing your fix
     - [ ] Evaluating your fix
     - [ ] Related work
     - [ ] Conclusion
@@ -43,7 +45,7 @@
     - [ ] Proofread
 
 ## Graphics
-- [ ] Double check submission paper
+- [x] Double check submission paper
 - [ ] Demo day
 
 ## Virtualization

@@ -11,4 +11,10 @@ Matt Gardner, Yoav Artzi, Victoria Basmova, Jonathan Berant, Ben Bogin, Sihao
 \newblock Evaluating models' local decision boundaries via contrast sets.
 \newblock {\em arXiv preprint arXiv:2004.02709}, 2020.
 
+\bibitem{swayamdipta2020dataset}
+Swabha Swayamdipta, Roy Schwartz, Nicholas Lourie, Yizhong Wang, Hannaneh
+  Hajishirzi, Noah~A. Smith, and Yejin Choi.
+\newblock Dataset cartography: Mapping and diagnosing datasets with training
+  dynamics, 2020.
+
 \end{thebibliography}

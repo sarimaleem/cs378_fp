@@ -10,3 +10,4 @@ paper/main.aux
 eval_output/runs/
 trained_model*
 eval_output-*.zip
+model*
