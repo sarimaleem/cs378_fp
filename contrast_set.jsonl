@@ -13,7 +13,7 @@
 {"premise": "A man in a blue shirt standing in front of a garage-like structure painted with geometric designs.", "hypothesis": "A man is not repainting a garage", "label": 1}
 {"premise": "A man in a blue shirt standing in front of a garage-like structure painted with geometric designs.", "hypothesis": "A man is wearing a shirt", "label": 0}
 {"premise": "A man in a blue shirt standing in front of a garage-like structure painted with geometric designs.", "hypothesis": "A man is wearing a black shoe", "label": 1}
-{"premise": "Under a blue sky with white clouds, a child reaches up to touch the propeller of a plane standing parked on a field of grass.", "hypothesis": "A child is reaching ot touch a plane.", "label": 0}
+{"premise": "Under a blue sky with white clouds, a child reaches up to touch the propeller of a plane standing parked on a field of grass.", "hypothesis": "A child is reaching to touch a plane.", "label": 0}
 {"premise": "Under a blue sky with white clouds, a child reaches up to touch the propeller of a plane standing parked on a field of grass.", "hypothesis": "A child is not reaching to touch the propeller out of curiousity.", "label": 1}
 {"premise": "Under a blue sky with white clouds, a child reaches up to touch the propeller of a plane standing parked on a field of grass.", "hypothesis": "A child is playing with a cat.", "label": 2}
 {"premise": "A woman is doing a cartwheel while wearing a bikini in the sand next to the beach.", "hypothesis": "A man is doing a cartwheel.", "label": 2}
@@ -25,3 +25,12 @@
 {"premise": "A young boy in a field of flowers carrying a ball", "hypothesis": "boy in field without flowers", "label": 2}
 {"premise": "Families waiting in line at an amusement park for their turn to ride.", "hypothesis": "People are waiting in line.", "label": 0}
 {"premise": "Families waiting in line at an amusement park for their turn to ride.", "hypothesis": "People are waiting.", "label": 0}
+{"premise": "A senior is waiting at the window of a restaurant that serves sandwiches.", "hypothesis": "A human waits to be served his food.", "label": 0}
+{"premise": "A senior is waiting outside the window of a resturant that serves sandwiches.", "hypothesis": "A man is waiting in line for the bus.", "label": 1}
+{"premise": "A senior is waiting at the window of a restaurant that serves sandwiches.", "hypothesis": "A man is dying to order a grilled cheese sandwich.", "label": 1}
+{"premise": "Man in a black suit, white shirt and black bowtie playing an instrument with the rest of his symphony surrounding him.", "hypothesis": "A father in a suit", "label": 1}
+{"premise": "Man in a black suit, white shirt and black bowtie playing an instrument with the rest of his symphony surrounding him.", "hypothesis": "Everybody has a suit", "label": 1}
+{"premise": "Man in a black suit, white shirt and black bowtie playing an instrument with the rest of his symphony surrounding him.", "hypothesis": "A white person in a suit", "label": 1}
+{"premise": "Two women having drinks and smoking cigarettes at the bar.", "hypothesis": "one woman at a bar", "label": 2}
+{"premise": "Two women having drinks and smoking cigarettes at the bar.", "hypothesis": "2 women are at a bar.", "label": 0}
+{"premise": "Two women having drinks and smoking cigarettes at the bar.", "hypothesis": "Women are happy at a bar.", "label": 1}

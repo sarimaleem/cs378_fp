@@ -3,6 +3,9 @@ import json
 in_file = open("./eval_output/eval_predictions.jsonl", "r")
 output = open("./contrast_set.jsonl", "a")
 for (i, line) in enumerate(in_file):
+    if (i < 30):
+        continue
+
     if (i > 50):
         break
     example = json.loads(line)
@@ -27,6 +30,6 @@ for (i, line) in enumerate(in_file):
 
     new_example = {"premise": new_premise, "hypothesis": new_hypothesis, "label": new_label}
     json_object = json.dumps(new_example) 
-    output.write(json_object)
+    output.write("\n" +  json_object)
     
     print("------------------------------------------------------")

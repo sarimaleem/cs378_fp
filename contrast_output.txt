@@ -1,0 +1,65 @@
+line: 2
+premise: Two women are embracing while holding to go packages.
+hypothesis: The women are hugging outside the deli
+label: 0
+predicted: 1
+
+----------------------------------------
+
+line: 5
+premise: Two young children in blue jerseys, one with the number 9 and one with the number 2 are standing on wooden steps in a bathroom and washing their hands in a sink.
+hypothesis: Two kids in blue jerseys walk to school.
+label: 2
+predicted: 1
+
+----------------------------------------
+
+line: 12
+premise: A man in a blue shirt standing in front of a garage-like structure painted with geometric designs.
+hypothesis: A man is not repainting a garage
+label: 1
+predicted: 2
+
+----------------------------------------
+
+line: 16
+premise: Under a blue sky with white clouds, a child reaches up to touch the propeller of a plane standing parked on a field of grass.
+hypothesis: A child is not reaching to touch the propeller out of curiousity.
+label: 1
+predicted: 2
+
+----------------------------------------
+
+line: 22
+premise: Two men on vehicles competing in a race.
+hypothesis: Men are riding cars on the street.
+label: 1
+predicted: 2
+
+----------------------------------------
+
+line: 28
+premise: A senior is waiting outside the window of a resturant that serves sandwiches.
+hypothesis: A man is waiting in line for the bus.
+label: 1
+predicted: 2
+
+----------------------------------------
+
+line: 31
+premise: Man in a black suit, white shirt and black bowtie playing an instrument with the rest of his symphony surrounding him.
+hypothesis: Everybody has a suit
+label: 1
+predicted: 2
+
+----------------------------------------
+
+line: 34
+premise: Two women having drinks and smoking cigarettes at the bar.
+hypothesis: 2 women are at a bar.
+label: 2
+predicted: 0
+
+----------------------------------------
+
+8 / 35 mispreditions
